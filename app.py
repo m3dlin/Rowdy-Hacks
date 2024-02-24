@@ -15,6 +15,10 @@ dinosaurs_data = {
 # first route when user goes to website.
 @app.route("/")
 def index():
+    return render_template('login-screen.html'), 200
+
+@app.route("/inventory")
+def inventory_screen():
     return render_template('inventory.html', dinosaurs = dinosaurs_data), 200
 
 
