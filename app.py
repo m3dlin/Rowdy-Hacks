@@ -1,11 +1,13 @@
 from flask import Flask, render_template
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='/static', static_folder='./static')
 
 # first route when user goes to website.
 @app.route("/")
 def index():
-    return render_template('index.html'), 200
+    return render_template('scanner2.html'), 200
+
+
 
 
 

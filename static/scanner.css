@@ -1,0 +1,8 @@
+#barcode-scanner {
+  width: 100%; /* Set the width to fill the container */
+  max-width: 800px; /* Optionally, set a maximum width */
+  height: auto; /* Automatically adjust the height based on the aspect ratio */
+  border: 1px solid #ccc; /* Add a border for visibility */
+  margin: 0 auto; /* Center the video horizontally */
+  display: block; /* Ensure the video is displayed as a block element */
+}
