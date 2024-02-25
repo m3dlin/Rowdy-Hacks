@@ -30,8 +30,11 @@
 
         <div class="box">
             <h1>Login</h1>
-            <input type="text" placeholder="Email"/>
-            <button>Login</button>
+            <form action="/login" method="POST">
+                <input type="text" placeholder="Email" name="email"/>
+                <button type="submit">Login</button>
+            </form>
+
         </div>
 
     </body>
