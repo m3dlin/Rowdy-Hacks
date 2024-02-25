@@ -1,13 +1,22 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from utils.database import check_credentials, get_dinosaurs_ids, get_dinosaurs_info, get_dinosaur_info
 import base64
 import os
 from dotenv import load_dotenv
+import random
 load_dotenv()
 
 app = Flask(__name__)
 
 app.secret_key = os.getenv('SECRET_KEY')
+
+# Define probabilities for each number
+probabilities = {
+    1: 0.6,  # 60% chance
+    2: 0.25,  # 25% chance
+    3: 0.1,   # 10% chance
+    4: 0.05   # 5% chance
+}
 
 
 # first route when user goes to website.
@@ -38,7 +47,7 @@ def dinopedia_screen():
 
 @app.route("/scan")
 def scan_screen():
-    return "<h1> scan screen </h1>"
+    return render_template('scanner.html'), 200
 
 
 @app.route("/inventory")
@@ -74,7 +83,24 @@ def course_page(dino_name):
 def  dino_capture_screen():
     return render_template('dino-capture.html', status=True), 200
 
+@app.route('/upload_code', methods=['POST'])
+def upload_code():
+    # Get the image data URL from the request
+    code = request.json['code']
+    # Generate a random number based on probabilities
+    dinoID = random.choices(list(probabilities.keys()), list(probabilities.values()))[0]
+    print(dinoID)
 
+    # 4101450004474
+    # # print(code.encode('utf-8'))
+    # # Save the barcode data to a file
+    # with open('barcode_txt', 'wb') as f:
+    #    # f.write(image_data_url.split(',')[1].decode('base64'))
+    #     # f.write(code)
+    #     f.write(code.encode('utf-8'))
+
+    # find_barcode()
+    return jsonify({'message': 'Code uploaded successfully'})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
