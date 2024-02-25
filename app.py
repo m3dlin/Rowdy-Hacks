@@ -13,7 +13,7 @@ def find_barcode():
 # first route when user goes to website.
 @app.route("/")
 def index():
-    return render_template('scanner2.html'), 200
+    return render_template('scanner.html'), 200
 
 @app.route('/upload', methods=['POST'])
 def upload():
