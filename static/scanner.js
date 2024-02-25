@@ -92,8 +92,31 @@ const doScreenshot = () => {
   canvas.height = video.videoHeight;
   canvas.getContext("2d").drawImage(video, 0, 0);
   screenshotImage.src = canvas.toDataURL("image/webp");
+  const imageDataURL = canvas.toDataURL("image/webp");
   screenshotImage.classList.remove("d-none");
+  sendImageToFlask(imageDataURL);
 };
+
+function sendImageToFlask(imageDataURL) {
+  // Send a POST request to the Flask backend with the image data
+  fetch("/upload", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ imageDataURL: imageDataURL }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log("Image uploaded successfully");
+      } else {
+        console.error("Error uploading image:", response.statusText);
+      }
+    })
+    .catch((error) => {
+      console.error("Error uploading image:", error);
+    });
+}
 
 pause.onclick = pauseStream;
 screenshot.onclick = doScreenshot;
