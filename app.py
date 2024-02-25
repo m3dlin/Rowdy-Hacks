@@ -28,7 +28,7 @@ def login():
     
 @app.route("/home", endpoint='home')
 def home_screen():
-    return "<h1> hello world </h1>"
+    return render_template('home.html'), 200
 
 
 @app.route("/dinopedia")
