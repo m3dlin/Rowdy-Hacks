@@ -67,7 +67,7 @@ def inventory_screen():
     return redirect(url_for('login'))
 
 @app.route("/<dino_name>")
-def course_page(dino_name):
+def dino_page(dino_name):
         if 'user' in session:
             user = session['user']
             dinosaur_info = get_dinosaur_info(dino_name)
