@@ -97,10 +97,3 @@ def insert_blob(dino_id, blob_data):
     with engine.connect() as conn:
         query = text("UPDATE Dinosaurs SET dino_image = :blob_data WHERE dino_id = :dino_id")
         conn.execute(query, {'blob_data': blob_data, 'dino_id': dino_id})
-
-
-if __name__ == '__main__': 
-    image_path = '/Users/emilym/Downloads/DinoSprites/Dino4.png'
-    blob_data = image_to_blob(image_path)
-    
-    insert_blob(4, blob_data=blob_data)
