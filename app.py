@@ -1,5 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 import base64
+import random
+
+# Define probabilities for each number
+probabilities = {
+    1: 0.6,  # 60% chance
+    2: 0.25,  # 25% chance
+    3: 0.1,   # 10% chance
+    4: 0.05   # 5% chance
+}
 # from PIL import Image
 # from pyzbar.pyzbar import decode, ZBarSymbol
 
@@ -33,13 +42,17 @@ def index():
 def upload_code():
     # Get the image data URL from the request
     code = request.json['code']
-    print(code)
-    # print(code.encode('utf-8'))
-    # Save the barcode data to a file
-    with open('barcode_txt', 'wb') as f:
-       # f.write(image_data_url.split(',')[1].decode('base64'))
-        # f.write(code)
-        f.write(code.encode('utf-8'))
+    # Generate a random number based on probabilities
+    dinoID = random.choices(list(probabilities.keys()), list(probabilities.values()))[0]
+    print(dinoID)
+
+    # 4101450004474
+    # # print(code.encode('utf-8'))
+    # # Save the barcode data to a file
+    # with open('barcode_txt', 'wb') as f:
+    #    # f.write(image_data_url.split(',')[1].decode('base64'))
+    #     # f.write(code)
+    #     f.write(code.encode('utf-8'))
 
     # find_barcode()
     return jsonify({'message': 'Code uploaded successfully'})
