@@ -30,6 +30,17 @@ def login():
 def home_screen():
     return "<h1> hello world </h1>"
 
+
+@app.route("/dinopedia")
+def dinopedia_screen():
+    return render_template('dinopedia.html'), 200
+
+
+@app.route("/scan")
+def scan_screen():
+    return "<h1> scan screen </h1>"
+
+
 @app.route("/inventory")
 def inventory_screen():
     if 'user' in session:
@@ -58,6 +69,12 @@ def course_page(dino_name):
             dino = {'name': dinosaur_image, 'image': base64_image}
 
             return render_template('dino-entry.html', dinosaur=dino), 200
+
+@app.route("/capture")
+def  dino_capture_screen():
+    return render_template('dino-capture.html', status=True), 200
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

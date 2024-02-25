@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dinopedia</title>
+    <link rel="stylesheet" href="static/dinopia-font/DinopiaRegular.otf" type="font/otf" />
+    <style>
+        @font-face {
+            font-family: 'DinopiaRegular';
+            src: url('static/dinopia-font/DinopiaRegular.otf') format('opentype');
+        }
+        body {
+            font-family: 'DinopiaRegular', sans-serif;
+            background-color: #fff4e4; /* Set background color to #8d6148 */
+            text-align: center; /* Center-align text horizontally */
+            font-size: 20px; /* Adjust the font size as needed */
+            position: relative; /* Position relative for absolute positioning of dino footprints */
+        }
+        h1 {
+            font-size: 80px; /* Make only the header text bigger */
+            color: #8d6148;
+            position: relative; /* Position relative for absolute positioning of pseudo-element */
+            display: inline-block; /* Display inline-block to wrap text */
+        }
+        h1::after {
+            content: ''; /* Add content to pseudo-element */
+            position: absolute; /* Position absolute for positioning */
+            bottom: -10px; /* Adjust bottom position to position underline */
+            left: 0; /* Position at the start of the text */
+            width: 100%; /* Full width */
+            height: 3px; /* Height of the underline */
+            background-image: linear-gradient(
+                to right,
+                transparent 20%,
+                #8d6148 40%, /* Change color to match highlight-text */
+                transparent 60%
+            );
+            background-size: 10px 10px; /* Size of squiggles */
+        }
+        .container {
+            text-align: center; /* Center-align content */
+            margin-bottom: 30px; /* Add margin at the bottom */
+        }
+        .description {
+            text-align: left; /* Align text to the left */
+            margin: 0 auto 70px; /* Add margin around paragraphs and space between each dinosaur's description */
+            max-width: 800px; /* Limit maximum width for better readability */
+            color: #8d6148;
+        }
+        .left-image, .right-image {
+            display: inline-block; /* Ensure images are displayed as inline-block elements */
+            vertical-align: top; /* Align images to the top of their container */
+            margin: 0 20px; /* Add margin to space images horizontally */
+        }
+        .highlight-text {
+            color: #d0d4ac; /* Change the color of "Rowdy Rex" text */
+        }
+        .back-button {
+            margin-top: 50px; /* Add margin to separate the button from the content */
+            font-size: 24px; /* Make the button text larger */
+            padding: 10px 20px; /* Add padding to increase button size */
+            background-color: #8d6148 ; /* Change button background color */
+            color: #fff4e4; /* Change button text color */
+            border: none; /* Remove button border */
+            border-radius: 10px; /* Add border radius for rounded corners */
+        }
+        .details {
+            text-align: left; /* Align text to the left */
+            margin-top: 20px; /* Add margin on top */
+            color: #8d6148;
+        }
+        .details p {
+            margin: 5px 0; /* Add margin to paragraphs */
+            color: #8d6148;
+        }
+        .dino-footprint {
+            position: absolute; /* Position footprint images absolutely */
+            z-index: -1; /* Ensure footprint images are behind other content */
+            top: 1%;
+            left: 25%;
+            width: 10%;
+            transform: rotate(15deg); /* Adjust footprint rotation */
+        }
+        .dino-footprint2 {
+            position: absolute; /* Position footprint images absolutely */
+            z-index: -1; /* Ensure footprint images are behind other content */
+            top: 2%;
+            right: 30%;
+            width: 8%;
+
+            transform: rotate(-15deg); /* Adjust footprint rotation */
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>DINOPEDIA</h1>
+    <img src="static/DinoSprites/dinoprint.png" class="dino-footprint">
+    <img src="static/DinoSprites/dinoprint.png" class="dino-footprint2">
+
+
+    <!-- Add more footprint images with different positions and angles as needed -->
+    <div class="container">
+        <div class="left-image">
+            <img src="static/DinoSprites/Dino1.png" height="200">
+            <div class="details">
+                <p><strong>Age:</strong> 65 million years</p>
+                <p><strong>Diet:</strong> Carnivore</p>
+            </div>
+        </div>
+    </div>
+    <p class="description"> <span class="highlight-text">Rowdy Rex</span> is the ultimate barcode buddy! If you ever find yourself scanning a barcode, don't be surprised if this mischievous dino pops up with a cheeky grin. Rowdy Rex is the life of the barcode party, known for his wild antics and boundless energy. Whether it's a cereal box or a shampoo bottle, Rowdy Rex is there, ready to add a dash of dino-mite fun to your day. So keep your scanners handy, because you never know when you'll encounter this rowdy rascal on your next shopping adventure! </p>
+    <div class="container">
+        <div class="right-image">
+            <img src="static/DinoSprites/Dino2.png" height="200">
+            <div class="details">
+                <p><strong>Age:</strong> 70 million years</p>
+                <p><strong>Diet:</strong> Omnivore</p>
+            </div>
+        </div>
+    </div>
+    <p class="description"><span class="highlight-text">Datasaur</span> is the prehistoric purveyor of barcode antics! With a penchant for pixelated adventures, this tech-savvy dino roams the lands, blending seamlessly with the bustling barcoded world. From grocery aisles to ancient ruins, you'll spot our friendly Datasaur, ready to decode the secrets of any barcode with a mischievous grin and a tap of its tiny toes.</p>
+    <div class="container">
+        <div class="left-image">
+            <img src="static/DinoSprites/Dino3.png" height="200">
+            <div class="details">
+                <p><strong>Age:</strong> 80 million years</p>
+                <p><strong>Diet:</strong> Herbivore</p>
+            </div>
+        </div>
+    </div>
+    <p class="description">Rumor has it, <span class="highlight-text">Codeceratops</span> is the elder sibling of Datasaur, making them the ultimate dynamic data duo! So, keep your scanners handy and your digits dexterous, because you never know when Codeceratops might come barreling down the barcode highway!</p>
+    <div class="container">
+        <div class="right-image">
+            <img src="static/DinoSprites/Dino4.png" height="200">
+            <div class="details">
+                <p><strong>Age:</strong> 75 million years</p>
+                <p><strong>Diet:</strong> Carnivore</p>
+            </div>
+        </div>
+    </div>
+    <p class="description"><span class="highlight-text">Cybersaurus</span> is the elusive dino of the digital age! Legend has it that this magnificent creature roams the vast realms of cyberspace, safeguarding the virtual world from cyber threats with his razor-sharp encryption claws and impenetrable firewall scales. But why is Cybersaurus so tricky to track down? Well, it's said that he's mastered the art of camouflage by blending seamlessly into barcode patterns across the globe! Yes, you heard it right—this tech-savvy dino has turned barcode scanning into a game of hide-and-seek, leaving even the most seasoned cyber sleuths scratching their heads in bewilderment.</p>
+    <a href="/home"><button class="back-button">Back to Main Page</button></a>
+</body>
+</html>
