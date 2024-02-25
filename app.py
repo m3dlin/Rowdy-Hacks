@@ -82,12 +82,13 @@ def course_page(dino_name):
 
 
 
-@app.route('/upload_code', methods=['POST', 'GET'])
+@app.route('/upload_code', methods=['POST'])
 def upload_code():
     if request.method == 'POST':
     # Get the image data URL from the request
         code = request.json['code']
 
+        return redirect(url_for('process_code'))
     # 4101450004474
     # # print(code.encode('utf-8'))
     # # Save the barcode data to a file
@@ -97,10 +98,20 @@ def upload_code():
     #     f.write(code.encode('utf-8'))
 
     # find_barcode()
-        return redirect(url_for('capture')), 302
     # return jsonify({'message': 'Code uploaded successfully'})
 
-@app.route("/capture", endpoint='capture')
+@app.route("/process_code", endpoint='process_code', methods=['GET'])
+def process_code():
+    # Your code to process the uploaded code
+    # ...
+
+    # After processing, redirect to the capture route
+    return redirect(url_for('capture'))
+
+
+
+
+@app.route("/capture", endpoint='capture', methods=['GET'])
 def  dino_capture_screen():
     # Generate a random number based on probabilities
     dinoID = random.choices(list(probabilities.keys()), list(probabilities.values()))[0]
