@@ -7,7 +7,8 @@ from pyzbar.pyzbar import decode, ZBarSymbol
 app = Flask(__name__,static_url_path='/static', static_folder='./static')
 
 def find_barcode():
-    return("im working")
+    print("IM working")
+    
 
 # first route when user goes to website.
 @app.route("/")
@@ -25,7 +26,7 @@ def upload():
        # f.write(image_data_url.split(',')[1].decode('base64'))
         f.write(base64.b64decode(image_data_url.split(',')[1]))
 
-    extraStr = find_barcode()
+    find_barcode()
     return jsonify({'message': 'Image uploaded successfully' + extraStr})
 
 
