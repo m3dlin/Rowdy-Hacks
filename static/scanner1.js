@@ -81,6 +81,8 @@ function order_by_occurrence(arr) {
   
   document.addEventListener("DOMContentLoaded", loadQuagga);
   
+
+
   function sendCodeToFlask(code) {
     // Send a POST request to the Flask backend with the image data
     fetch("/upload_code", {
@@ -93,6 +95,8 @@ function order_by_occurrence(arr) {
       .then((response) => {
         if (response.ok) {
           console.log("code uploaded successfully");
+          //redirect to capture page
+          window.location.href = "/capture";
         } else {
           console.error("Error uploading code1:", response.statusText);
         }
