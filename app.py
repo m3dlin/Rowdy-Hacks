@@ -5,7 +5,7 @@ app = Flask(__name__)
 # first route when user goes to website.
 @app.route("/")
 def index():
-    return render_template('index.html'), 200
+    return render_template('Dinosaurus.html'), 200
 
 
 
