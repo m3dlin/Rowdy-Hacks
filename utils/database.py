@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String, text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import os
@@ -30,6 +30,12 @@ class Users(Base):
     user_email = Column(String)
     user_name = Column(String)
 
+class Users_has_Dinosaurs(Base):
+    __tablename__ = 'Users_has_Dinosaurs'
+    Users_user_id = Column(Integer, primary_key=True)
+    Dinosaurs_dino_id = Column(Integer,primary_key=True)
+
+
 # function to check whether account exists or not
 def check_credentials(email):
     # new database connection
@@ -44,3 +50,57 @@ def check_credentials(email):
     else:
         session.close()
         return False
+    
+# function to retrieve dinosaurs that the user has in their inventory
+def get_dinosaurs_ids(email):
+    session = Session()
+    user = session.query(Users).filter_by(user_email=email).first()
+
+    # if the user exists
+    if user:
+        conn = engine.connect()
+        # execute SQL
+        query = text('SELECT Dinosaurs_dino_id FROM Users_has_Dinosaurs WHERE Users_user_id = :user_id')
+        result = conn.execute(query,{'user_id': user.user_id })
+
+
+        # Fetch all rows from the result
+        dinosaurs = result.fetchall()
+        conn.close()
+
+        # take dinosaur IDs from the result
+        dinosaur_ids = [row[0] for row in dinosaurs]
+
+        return dinosaur_ids
+    else:
+        return []  # Return an empty list if user is not found or email is invalid
+
+def get_dinosaurs_info(ids):
+    with engine.connect() as conn:
+        dinosaurs = []
+        query = text("SELECT dino_breed, dino_image FROM Dinosaurs WHERE dino_id = :dino_id")
+        for dino_id in ids:
+            result = conn.execute(query, {'dino_id': dino_id})
+            dinosaur_info = result.fetchone()
+            if dinosaur_info:
+                dinosaurs.append(dinosaur_info)
+
+        return dinosaurs
+    
+
+def image_to_blob(image_path):
+    with open(image_path, 'rb') as file:
+        blob_data = file.read()
+    return blob_data
+
+def insert_blob(dino_id, blob_data):
+    with engine.connect() as conn:
+        query = text("UPDATE Dinosaurs SET dino_image = :blob_data WHERE dino_id = :dino_id")
+        conn.execute(query, {'blob_data': blob_data, 'dino_id': dino_id})
+
+
+if __name__ == '__main__': 
+    image_path = '/Users/emilym/Downloads/DinoSprites/Dino4.png'
+    blob_data = image_to_blob(image_path)
+    
+    insert_blob(4, blob_data=blob_data)
