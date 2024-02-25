@@ -1,6 +1,6 @@
 gunicorn
 Flask
-pillow
-pyzbar
-zbar
-pyzbar[scripts]
+# pillow
+# pyzbar
+# zbar
+# pyzbar[scripts]
