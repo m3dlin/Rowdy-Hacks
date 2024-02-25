@@ -109,3 +109,15 @@ def insert_blob(dino_id, blob_data):
     with engine.connect() as conn:
         query = text("UPDATE Dinosaurs SET dino_image = :blob_data WHERE dino_id = :dino_id")
         conn.execute(query, {'blob_data': blob_data, 'dino_id': dino_id})
+
+
+def get_dinosaur(id):
+        with engine.connect() as conn:
+            query = text("SELECT dino_breed, dino_image FROM Dinosaurs WHERE dino_id = :dino_id")
+        
+            result = conn.execute(query, {'dino_id': id})
+            dinosaur_info = result.fetchone()
+            if dinosaur_info:
+                return dinosaur_info
+    
+        return None

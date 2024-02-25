@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
-from utils.database import check_credentials, get_dinosaurs_ids, get_dinosaurs_info, get_dinosaur_info
+from utils.database import check_credentials, get_dinosaurs_ids, get_dinosaurs_info, get_dinosaur_info, get_dinosaur
 import base64
 import os
 from dotenv import load_dotenv
@@ -79,17 +79,14 @@ def course_page(dino_name):
 
             return render_template('dino-entry.html', dinosaur=dino), 200
 
-@app.route("/capture")
-def  dino_capture_screen():
-    return render_template('dino-capture.html', status=True), 200
 
-@app.route('/upload_code', methods=['POST'])
+
+
+@app.route('/upload_code', methods=['POST', 'GET'])
 def upload_code():
+    if request.method == 'POST':
     # Get the image data URL from the request
-    code = request.json['code']
-    # Generate a random number based on probabilities
-    dinoID = random.choices(list(probabilities.keys()), list(probabilities.values()))[0]
-    print(dinoID)
+        code = request.json['code']
 
     # 4101450004474
     # # print(code.encode('utf-8'))
@@ -100,7 +97,24 @@ def upload_code():
     #     f.write(code.encode('utf-8'))
 
     # find_barcode()
-    return jsonify({'message': 'Code uploaded successfully'})
+        return redirect(url_for('capture')), 302
+    # return jsonify({'message': 'Code uploaded successfully'})
+
+@app.route("/capture", endpoint='capture')
+def  dino_capture_screen():
+    # Generate a random number based on probabilities
+    dinoID = random.choices(list(probabilities.keys()), list(probabilities.values()))[0]
+    
+
+    dinosaur_info = get_dinosaur(dinoID)
+    dinosaur_image = dinosaur_info[1]
+
+            
+    base64_image = base64.b64encode(dinosaur_info[1]).decode('utf-8')
+    dino = {'name': dinosaur_image, 'image': base64_image}
+    return render_template('dino-capture.html', dinosaur=dino), 200
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
