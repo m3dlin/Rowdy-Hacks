@@ -88,6 +88,18 @@ def get_dinosaurs_info(ids):
         return dinosaurs
     
 
+def get_dinosaur_info(name):
+        with engine.connect() as conn:
+            query = text("SELECT dino_breed, dino_image FROM Dinosaurs WHERE dino_breed = :dino_breed")
+        
+            result = conn.execute(query, {'dino_breed': name})
+            dinosaur_info = result.fetchone()
+            if dinosaur_info:
+                return dinosaur_info
+    
+        return None
+
+
 def image_to_blob(image_path):
     with open(image_path, 'rb') as file:
         blob_data = file.read()

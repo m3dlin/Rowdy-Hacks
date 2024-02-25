@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from utils.database import check_credentials, get_dinosaurs_ids, get_dinosaurs_info
+from utils.database import check_credentials, get_dinosaurs_ids, get_dinosaurs_info, get_dinosaur_info
 import base64
 import os
 from dotenv import load_dotenv
@@ -44,13 +44,20 @@ def inventory_screen():
             dinosaurs.append({'name': dinosaur_name, 'image': base64_image})
 
         return render_template('inventory.html', dinosaurs=dinosaurs), 200
-
-
-
-
     return redirect(url_for('login'))
 
+@app.route("/<dino_name>")
+def course_page(dino_name):
+        if 'user' in session:
+            user = session['user']
+            dinosaur_info = get_dinosaur_info(dino_name)
+            dinosaur_image = dinosaur_info[1]
 
+            
+            base64_image = base64.b64encode(dinosaur_info[1]).decode('utf-8')
+            dino = {'name': dinosaur_image, 'image': base64_image}
+
+            return render_template('dino-entry.html', dinosaur=dino), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
