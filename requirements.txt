@@ -3,3 +3,4 @@ Flask
 pillow
 pyzbar
 zbar
+pyzbar[scripts]
