@@ -34,6 +34,10 @@ Run the app in development mode using
 ```sh
 python app.py
 ```
+or if you're on macOS
+```sh
+python3 app.py
+```
 open [http://127.0.0.1:5000](http://127.0.0.1:5000) to view it in your browser
 
 
