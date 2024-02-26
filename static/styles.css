@@ -1,0 +1,75 @@
+.video-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+#video-bg {
+    width: auto;
+    height: auto;
+    min-width: 100%; 
+    min-height: 100%;
+    object-fit: cover; 
+}
+
+.content {
+    position: relative;
+    z-index: 1; /* Place content above the video */
+    padding: 20px;
+    color: white;
+}
+
+/* Login box styles made by https://codepen.io/issamwg/pen/mmRzYJ */
+.box{
+    position:absolute;
+    height:100%;
+    width:100%;
+    color:#fff;
+    background:rgba(0,0,0,0.13);
+    padding:30px 0px;
+  }
+  .box h1{
+    text-align:center;
+    margin:30px 0;
+    font-size:30px;
+  }
+  .box input{
+    display:block;
+    width:300px;
+    margin:20px auto;
+    padding:15px;
+    background:rgba(0,0,0,0.2);
+    color:#fff;
+    border:0;
+  }
+  .box input:focus,.box input:active,.box button:focus,.box button:active{
+    outline:none;
+  }
+  .box button{
+    background:#d0d4ac;
+    border:0;
+    color:#fff;
+    padding:10px;
+    font-size:20px;
+    width:330px;
+    margin:20px auto;
+    display:block;
+    cursor:pointer;
+  }
+  .box button:active{
+    background:#27ae60;
+  }
+  .box p{
+    font-size:14px;
+    text-align:center;
+  }
+  .box p span{
+    cursor:pointer;
+    color:#666;
+  }

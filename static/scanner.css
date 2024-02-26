@@ -1,0 +1,47 @@
+@font-face {
+    font-family: "DinopiaRegular";
+    src: url("../static/dinopia-font/DinopiaRegular.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: "DinopiaLight";
+    src: url("../static/dinopia-font/DinopiaLight.otf") format("opentype");
+    /* Define additional font weights or styles here */
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    height: 100vh;
+    width: 100vw;
+  }
+  body {
+    background-color: #d0d4ac;
+    color: #8d6148;
+    font-family: "DinopiaRegular", sans-serif;
+  }
+  .container {
+    /* flex: 1; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    /* border: 10px solid #ccc; */
+    text-align: center;
+  }
+  
+  #barcode-scanner {
+    margin: 10px;
+    /* width: 30%; */
+    /* width: 100%; Set the width to fill the container */
+    /* max-width: 800px; Optionally, set a maximum width */
+    /* height: auto; Automatically adjust the height based on the aspect ratio */
+    /* border: 1px solid #ccc; Add a border for visibility */
+    /* margin: 0 auto; Center the video horizontally */
+    /*Ensure the video is displayed as a block element */
+  }

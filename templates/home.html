@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/Rowdystyle.css">
+    <link rel="stylesheet" href="static/dinopia-font/DinopiaRegular.otf" type="font/otf" />
+
+    <title>Dino Detectors</title>
+    <style>
+        @font-face {
+            font-family: 'DinopiaRegular';
+            src: url('static/dinopia-font/DinopiaRegular.otf') format('opentype');
+        }
+        body {
+            font-family: 'DinopiaRegular', sans-serif;
+        }
+
+
+        html {
+        --background-image: url("assets/vecteezy_prehistoric-forest-scene-background_6198880.jpg");
+        background: var(--background-image) no-repeat center center fixed;
+
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="fade welcome">
+            <h1>Welcome to Dino Detectors!</h1>
+            <p class="text">
+                Scan some barcodes and see if you capture a dinosaur!
+            </p>
+        </div>
+        <!-- <div class="dino"> -->
+            
+        <!-- </div> -->
+
+        <div class="fade buttons-container">
+            <div class="btns"><a href="/scan">Scan for Dinos</a></div>
+            <div class="btns"><a href="/inventory">View Dinos</a></div>
+            <div class="btns"><a href="/dinopedia">Dinopedia</a></div>
+
+        </div>        
+    </div>
+</body>
+</html>

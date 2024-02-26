@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barcode Scanner</title>
+    <link rel="stylesheet" href="../static/scanner.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Scan for Dinosaurs</h1>
+      <div id="barcode-scanner"></div>
+    </div>
+
+    <script src="../static/scanner1.js"></script>
+    <script src="../static/quagga.js"></script>
+    <!-- <script>
+      navigator.mediaDevices.getUserMedia({ video: true });
+    </script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <script>
+      Quagga.init(
+        {
+          inputStream: {
+            name: "Live",
+            type: "LiveStream",
+            target: document.querySelector("#barcode-scanner"),
+            constraints: {
+              width: 400,
+              height: 400,
+              facingMode: "environment",
+            },
+          },
+          decoder: {
+            readers: ["ean_reader"],
+          },
+        },
+        function (err) {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          console.log("Initialization finished. Ready to start");
+          Quagga.start();
+        }
+      );
+
+      Quagga.onDetected(function (data) {
+        var barcodeData = data.codeResult.code;
+        console.log("Barcode detected and processed: ", barcodeData);
+
+        // Send barcode data to Flask backend
+        fetch("/scan", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: "barcodeData=" + barcodeData,
+        })
+          .then((response) => response.text())
+          .then((data) => console.log(data))
+          .catch((error) => console.error(error));
+      });
+    </script> -->
+  </body>
+</html>
